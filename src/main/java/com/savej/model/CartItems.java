@@ -1,0 +1,29 @@
+package com.savej.model;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class CartItems {
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    private  Long cartItemId;
+
+    private Integer quantity;
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+}
